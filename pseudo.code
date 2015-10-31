@@ -1,0 +1,12 @@
+ add_action('admin_enqueue_scripts',function($x){
+	function g($a,$b){if(file_exists(WP_PLUGIN_DIR.$b)){wp_register_style($a,plugins_url($b),false,null);wp_enqueue_style($a);return true;};return false;}
+	function h($s,$n,$i){if(g($s,'/shared-resources/'.$n)===false){g($s,$i.'/fallback-resources/'.$n);};}
+	$d='/wl_dbm';
+	$p='wl_dbm/';
+	if(in_array($x,array($p.'home.php',$p.'tables.php',$p.'manage.php',$p.'backup.php'))){
+	 g('dbm-style',$d.'/wl_dbm.css');
+	}elseif($x===$p.'erase.php'){
+	 h('ft-style','filterTable.css',$d);
+	 h('ft-script','filterTable.js',$d);
+	};
+ });
